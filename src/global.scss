@@ -24,3 +24,22 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
+
+.titulo {
+  font-family: 'Original Surfer', cursive;
+  font-size: 25px;
+  font-weight: bold;
+  color: coral;
+}
+
+.subtitulos {
+  font-family: 'Original Surfer', cursive;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.normal {
+  font-family: 'Original Surfer', cursive;
+  font-size: 12px;
+}
