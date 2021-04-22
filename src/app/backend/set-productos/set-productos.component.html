@@ -1,3 +1,59 @@
-<p class="titulo">
-  set-productos works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="subtitulo">
+      Configuracion de productos
+    </ion-title>
+
+    <ion-menu-button slot="start">
+      <ion-buttons>
+        <ion-button>
+          <ion-icon color="primary" slot="icon-only" name="menu"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-menu-button>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <h3 class="subtitulo encabezado">Ingrese datos del Producto</h3>
+
+  <ion-item>
+    <ion-label class="normal" position="floating">
+      Nombre:
+    </ion-label>
+    <ion-input [(ngModel)]="newProducto.nombre" class="normal" type="text" inputmode="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label class="normal" position="floating">
+      Precio:
+    </ion-label>
+    <ion-input [(ngModel)]="newProducto.precio" class="normal" type="number" inputmode="numeric"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label class="normal" position="floating">
+      Precio reducido:
+    </ion-label>
+    <ion-input [(ngModel)]="newProducto.precioReducido" class="normal" type="number" inputmode="numeric"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label class="normal">
+      Foto:
+    </ion-label>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="images"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+
+  <ion-button style="margin: 30px;" expand="full" (click)="saveProduct()">
+    Guardar
+  </ion-button>
+
+</ion-content>
