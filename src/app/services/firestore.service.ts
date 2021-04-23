@@ -34,9 +34,10 @@ export class FirestoreService {
     return this.database.createId();
   }
 
-  getCollection(path: string) {
-    const colection =  this.database.collection(path);
+  getCollection<tipo>(path: string) {
+    const colection =  this.database.collection<tipo>(path);
     return colection.valueChanges();
   }
+
 
 }
