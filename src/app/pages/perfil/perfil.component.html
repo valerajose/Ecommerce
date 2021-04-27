@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="subtitulo">
+      Usuario
+    </ion-title>
+
+    <ion-menu-button slot="start">
+      <ion-buttons>
+        <ion-button>
+          <ion-icon color="primary" slot="icon-only" name="menu"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-menu-button>
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label class="normal" position="floating">
+      Correo:
+    </ion-label>
+    <ion-input [(ngModel)]="cliente.email" class="normal" type="text" inputmode="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label class="normal" position="floating">
+      Nombre:
+    </ion-label>
+    <ion-input [(ngModel)]="cliente.nombre" class="normal" type="text" inputmode="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label class="normal" position="floating">
+      Celular:
+    </ion-label>
+    <ion-input [(ngModel)]="cliente.celular" class="normal" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label class="normal" position="floating">
+      Referencia de Ubicación:
+    </ion-label>
+    <ion-input [(ngModel)]="cliente.referecia" class="normal" type="text" inputmode="text"></ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label class="normal">
+      Foto referencial:
+    </ion-label>
+    <ion-buttons slot="end">
+      <ion-button>
+        <label for="file-upload">
+          <ion-icon slot="icon-only" name="images"></ion-icon>
+        </label>
+        <input (change)="newImageUpload($event)" id="file-upload" style="display: none;" type="file" accept="image/*">
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+  <ion-item>
+    <img class="image" [src]="cliente.foto">
+  </ion-item>
+
+  <div slyle="text-align: end; margin: 10px;">
+    <ion-button (click)="getIn()"> Ingresar</ion-button>
+    <ion-button (click)="CheckIn()"> Registrarse</ion-button>
+  </div>
+
+  <div slyle="text-align: end; margin: 10px;">
+    <ion-button (click)="Exit()"> Salir</ion-button>
+  </div>
+
+</ion-content>
+
+

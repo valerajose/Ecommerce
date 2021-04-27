@@ -6,3 +6,13 @@ export interface Producto {
   id: string;
   fecha: Date;
 }
+
+export interface Cliente {
+  uid: string;
+  nombre: string;
+  email: string;
+  celular: string;
+  foto: string;
+  referecia: string;
+  ubicacion: any;
+}

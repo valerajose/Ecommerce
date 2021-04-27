@@ -3,6 +3,7 @@ import { RenderFlags } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { Producto } from 'src/app/models';
+import { FirestorageService } from 'src/app/services/firestorage.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class SetProductosComponent implements OnInit {
     public firestoreService : FirestoreService,
     public loadingController : LoadingController,
     public toastController: ToastController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public firestorageService: FirestorageService
   ) { }
 
   //manejo de data en bd
@@ -26,12 +28,16 @@ export class SetProductosComponent implements OnInit {
 
   newProducto: Producto;
 
+  newFile: '';
+
 
   //experiencia de usuario
 
   enableNewProducto = false;
 
   loading: any;
+
+  newImage = '';
 
   nuevo(){
     this.enableNewProducto = true;
@@ -45,13 +51,17 @@ export class SetProductosComponent implements OnInit {
     }
   }
 
-
   ngOnInit() {
     this.getProductos();
   }
 
-  saveProduct(){
+  async saveProduct(){
     this.presentLoading();
+    const path = 'Productos';
+    const name = this.newProducto.nombre;
+    const res = await this.firestorageService.uploadImage(this.newFile,path,name);
+    this.newProducto.foto = res;
+
     this.firestoreService.createDoc(this.newProducto,this.path,this.newProducto.id)
     .then(res =>{
       this.loading.dismiss();
@@ -98,9 +108,7 @@ export class SetProductosComponent implements OnInit {
       await alert.present();
   }
 
-
   //experiencia de usuario funciones-----------------------------------------------------
-
 
   async presentLoading() {
      this.loading = await this.loadingController.create({
@@ -120,5 +128,18 @@ export class SetProductosComponent implements OnInit {
     });
     toast.present();
   }
+
+  async newImageUpload(event: any ) {
+    if(event.target.files && event.target.files[0]){
+      this.newFile = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = ((image) =>{
+        this.newProducto.foto = image.target.result as string;
+      });
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+  };
 
 }

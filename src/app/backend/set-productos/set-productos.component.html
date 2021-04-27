@@ -15,7 +15,6 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
 
   <h3 class="subtitulo encabezado">Ingrese datos del Producto</h3>
@@ -24,13 +23,15 @@
     <ion-button (click)="nuevo()" > Nuevo</ion-button>
   </div>
 
-
   <div *ngIf="enableNewProducto">
 
       <ion-item>
         <ion-buttons>
           <ion-button (click)="enableNewProducto=false">
             <ion-icon slot="icon-only" name="close" color="danger"></ion-icon>
+          </ion-button>
+          <ion-button style="margin: 30px;" expand="full" (click)="saveProduct()">
+            <ion-icon slot="icon-only" name="save"></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-item>
@@ -65,28 +66,34 @@
             <label for="file-upload">
               <ion-icon slot="icon-only" name="images"></ion-icon>
             </label>
-            <input id="file-upload" style="display: none;" type="file" accept="image/*">
+            <input (change)="newImageUpload($event)" id="file-upload" style="display: none;" type="file" accept="image/*">
           </ion-button>
         </ion-buttons>
       </ion-item>
+      <ion-item>
+        <img class="image" [src]="newProducto.foto">
+      </ion-item>
 
-      <ion-button style="margin: 30px;" expand="full" (click)="saveProduct()">
-        Guardar
-      </ion-button>
+
 
   </div>
 
+  <ion-card>
 
-  <ion-item *ngFor="let producto of productos">
-    <ion-label class="normal">{{producto.nombre}}</ion-label>
-    <ion-buttons slot="end">
-      <ion-button (click)="newProducto = producto; enableNewProducto=true;">
-        <ion-icon slot="icon-only" name="create-sharp"></ion-icon>
-      </ion-button>
-      <ion-button (click)="deleteProducto(producto)">
-        <ion-icon slot="icon-only" color="danger" name="trash"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-item>
+    <h3 class="subtitulo encabezado">Lista de Productos</h3>
+    <ion-item *ngFor="let producto of productos">
+      <ion-label class="normal">{{producto.nombre}}</ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="newProducto = producto; enableNewProducto=true;">
+          <ion-icon slot="icon-only" name="create-sharp"></ion-icon>
+        </ion-button>
+        <ion-button (click)="deleteProducto(producto)">
+          <ion-icon slot="icon-only" color="danger" name="trash"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-card>
+
+
 
 </ion-content>
